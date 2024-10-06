@@ -101,7 +101,7 @@ const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
           cekData(item);
         }}>
         <Image
-          source={{uri: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`}}
+          source={{uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`}}
           style={styles.image}
         />
       </TouchableOpacity>

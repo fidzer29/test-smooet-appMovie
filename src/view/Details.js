@@ -23,7 +23,7 @@ export default function Details({route, navigation}) {
   return (
     <ScrollView style={styles.scrollView}>
       <Image
-        source={{uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`}}
+        source={{uri: `https://image.tmdb.org/t/p/w500${data.backdrop_path}`}}
         style={styles.image}
       />
       <LinearGradient

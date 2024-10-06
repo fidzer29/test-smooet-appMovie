@@ -20,7 +20,7 @@ const Favorites = ({likedMovies, setLikedMovies}) => {
   const renderFavoriteCard = ({item}) => (
     <View style={styles.card}>
       <Image
-        source={{uri: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`}}
+        source={{uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`}}
         style={styles.image}
       />
       <View style={styles.rowContainer}>
