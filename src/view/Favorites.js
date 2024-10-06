@@ -6,14 +6,14 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 const Favorites = ({likedMovies, setLikedMovies}) => {
   const [numColumns, setNumColumns] = useState(2);
 
   const toggleLove = movieId => {
-    setLikedMovies(
-      prevState => prevState.filter(movie => movie.id !== movieId), // Remove if already liked
+    setLikedMovies(prevState =>
+      prevState.filter(movie => movie.id !== movieId),
     );
   };
 
@@ -31,7 +31,7 @@ const Favorites = ({likedMovies, setLikedMovies}) => {
           <Text style={styles.heartText}>{'❤️'}</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.rating}>⭐ {item.vote_average}</Text>
+      <Text style={styles.rating}>⭐ {item.vote_average.toFixed(1)}</Text>
     </View>
   );
 

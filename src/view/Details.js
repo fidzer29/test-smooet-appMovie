@@ -178,33 +178,33 @@ const styles = StyleSheet.create({
 
   //stars
   containerStars: {
-    padding: 16, // Padding untuk kontainer
-    backgroundColor: '#1e1e1e', // Warna latar belakang yang gelap
+    padding: 16,
+    backgroundColor: '#1e1e1e',
   },
   titleStars: {
     fontWeight: 'bold',
-    fontSize: 24, // Ukuran font lebih besar
-    color: '#fff', // Warna teks putih
-    marginBottom: 16, // Ruang di bawah judul
+    fontSize: 24,
+    color: '#fff',
+    marginBottom: 16,
   },
   starsContainer: {
-    flexDirection: 'row', // Mengatur elemen dalam baris
-    justifyContent: 'space-between', // Ruang antara elemen
-    flexWrap: 'wrap', // Agar elemen bisa membungkus
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   actor: {
-    alignItems: 'center', // Mengatur teks dan gambar di tengah
-    marginBottom: 16, // Ruang di bawah setiap aktor
-    width: '45%', // Lebar setiap aktor untuk dua kolom
+    alignItems: 'center',
+    marginBottom: 16,
+    width: '45%',
   },
   actorImage: {
-    width: 100, // Ukuran gambar
+    width: 100,
     height: 100,
-    borderRadius: 50, // Membuat gambar bulat
+    borderRadius: 50,
   },
   actorName: {
     textAlign: 'center',
-    color: '#fff', // Warna teks putih
-    marginTop: 8, // Ruang di atas nama aktor
+    color: '#fff',
+    marginTop: 8,
   },
 });

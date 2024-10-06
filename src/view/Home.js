@@ -12,10 +12,10 @@ import {getDataMovie as getData} from '../api/api';
 import {useNavigation} from '@react-navigation/native';
 
 const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
-  const [sortBy, setSortBy] = useState('Sort by');
+  const [sortBy, setSortBy] = useState('Sort by Release Date');
   const [genre, setGenre] = useState('Genre');
   const [moviesList, setMoviesList] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(5);
   const [numColumns, setNumColumns] = useState(2);
   const [isGenreModalVisible, setIsGenreModalVisible] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState(null);
@@ -23,7 +23,8 @@ const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
   const [error, setError] = useState(null);
   const [dataDetail, setDataDetail] = useState({});
   const [applyGenre, setApplyGenre] = useState(false);
-
+  const [originalMoviesList, setOriginalMoviesList] = useState([]);
+  const [isSorted, setIsSorted] = useState(false);
   const navigation = useNavigation();
 
   const genres = [
@@ -49,16 +50,21 @@ const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
   ];
 
   const sortDataByReleaseDate = () => {
-    const sortedData = [...moviesList].sort((a, b) => {
-      return new Date(a.release_date) - new Date(b.release_date);
-    });
-    setMoviesList(sortedData);
-    setSortBy('Release Date');
+    if (!isSorted) {
+      const sortedData = [...moviesList].sort((a, b) => {
+        return new Date(a.release_date) - new Date(b.release_date);
+      });
+      setMoviesList(sortedData);
+      setSortBy('Reset Sorting');
+    } else {
+      setMoviesList(originalMoviesList);
+      setSortBy('Sort by Release Date');
+    }
+    setIsSorted(!isSorted);
   };
 
   const handleClickHeart = item => {
     const isLiked = likedMovies.find(movie => movie.id === item.id);
-
     if (isLiked) {
       setLikedMovies(likedMovies.filter(movie => movie.id !== item.id));
     } else {
@@ -75,6 +81,8 @@ const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
     getData()
       .then(response => {
         setMoviesList(response.data.results);
+        setOriginalMoviesList(response.data.results);
+        setVisibleCount(5);
       })
       .catch(error => {
         setError(error.message);
@@ -115,7 +123,6 @@ const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
           </Text>
         </TouchableOpacity>
       </View>
-
       <Text style={styles.rating}>⭐{item.vote_average.toFixed(1)}</Text>
     </View>
   );
@@ -134,6 +141,10 @@ const Home = ({count, setCount, likedMovies, setLikedMovies}) => {
     getData(selectedGenre)
       .then(response => {
         setMoviesList(response.data.results);
+        if (!isSorted) {
+          setOriginalMoviesList(response.data.results);
+        }
+        setVisibleCount(5);
       })
       .catch(error => {
         setError(error.message);

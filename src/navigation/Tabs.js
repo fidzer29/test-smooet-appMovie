@@ -197,18 +197,6 @@ const Tabs = () => {
               </Text>
             </View>
           ),
-          headerRight: () => (
-            <TouchableOpacity style={{marginRight: 15}}>
-              <Image
-                source={require('../assets/icons/search.png')}
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: '#fff',
-                }}
-              />
-            </TouchableOpacity>
-          ),
         }}
       />
     </Tab.Navigator>
